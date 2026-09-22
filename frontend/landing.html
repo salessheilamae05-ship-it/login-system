@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Welcome</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: "Times New Roman", Times, serif;
+            background: #f8c8dc;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 20px;
+        }
+
+        .landing-container {
+            width: 90%;
+            max-width: 950px;
+            min-height: 550px;
+
+            background: #fff7fa;
+
+            display: flex;
+
+            overflow: hidden;
+
+            border: 2px solid #ed9fbd;
+            border-radius: 20px;
+
+            box-shadow: 0 15px 35px rgba(120, 50, 80, 0.18);
+        }
+
+        .landing-left {
+            width: 50%;
+
+            background: #71334d;
+            color: white;
+
+            padding: 70px 55px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .landing-left h1 {
+            font-size: 58px;
+            line-height: 0.95;
+            margin-bottom: 25px;
+        }
+
+        .landing-left p {
+            font-size: 19px;
+            line-height: 1.5;
+        }
+
+        .landing-right {
+            width: 50%;
+
+            background: #fce1eb;
+
+            padding: 60px 50px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+        }
+
+        .landing-right h2 {
+            color: #71334d;
+            font-size: 38px;
+            margin-bottom: 18px;
+        }
+
+        .landing-right p {
+            color: #7d5265;
+            font-size: 18px;
+            line-height: 1.5;
+            margin-bottom: 35px;
+        }
+
+        .start-btn {
+            display: inline-block;
+
+            text-decoration: none;
+
+            background: #c95788;
+            color: white;
+
+            padding: 15px 35px;
+
+            border-radius: 10px;
+
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .start-btn:hover {
+            background: #a9406d;
+        }
+
+        @media (max-width: 700px) {
+
+            .landing-container {
+                flex-direction: column;
+            }
+
+            .landing-left,
+            .landing-right {
+                width: 100%;
+            }
+
+            .landing-left {
+                padding: 50px 35px;
+            }
+
+            .landing-left h1 {
+                font-size: 45px;
+            }
+
+            .landing-right {
+                padding: 50px 30px;
+            }
+
+            .landing-right h2 {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="landing-container">
+
+        <div class="landing-left">
+
+            <h1>
+                HI,<br>
+                WELCOME!
+            </h1>
+
+            <p>
+                Welcome to our personal website where
+                you can learn more about us, our life as
+                IT students, and our experiences.
+            </p>
+
+        </div>
+
+        <div class="landing-right">
+
+            <h2>
+                LET'S GET STARTED
+            </h2>
+
+            <p>
+                Discover our website and get to know
+                Sheila Mae and Gladys Yesha.
+            </p>
+
+            <a href="./dashboard.html" class="start-btn">
+                ENTER WEBSITE
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
