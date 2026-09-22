@@ -1,255 +1,115 @@
-const API_URL = "https://login-system-db.onrender.com";
+<!DOCTYPE html>
+<html lang="en">
 
-console.log("APP.JS LOADED");
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>Login</title>
 
-const loginForm = document.getElementById("loginForm");
-const registerForm = document.getElementById("registerForm");
-const showRegisterBtn = document.getElementById("showRegister");
+    <link rel="stylesheet" href="style.css">
+</head>
 
-const messageEl = document.getElementById("message");
-const registerMessageEl = document.getElementById("registerMessage");
+<body>
 
+    <main class="card">
 
-// ========================================
-// SHOW REGISTER
-// ========================================
+        <!-- LOGIN -->
 
-if (showRegisterBtn) {
+        <div id="loginSection">
 
-    showRegisterBtn.addEventListener("click", function (e) {
+            <h1>Welcome Back</h1>
 
-        e.preventDefault();
+            <p class="subtitle">
+                Sign in to your account
+            </p>
 
-        document
-            .getElementById("loginSection")
-            .classList.add("hidden");
+            <form id="loginForm">
 
-        registerForm.classList.remove("hidden");
+                <label for="email">Email</label>
 
-    });
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Enter your email"
+                    required
+                >
 
-}
+                <label for="password">Password</label>
 
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Enter your password"
+                    required
+                >
 
-// ========================================
-// REGISTER
-// ========================================
+                <button type="submit">
+                    Login
+                </button>
 
-if (registerForm) {
+                <p id="message"></p>
 
-    registerForm.addEventListener("submit", async function (e) {
+            </form>
 
-        e.preventDefault();
+            <p class="register-text">
+                Don't have an account?
+                <a href="#" id="showRegister">Register</a>
+            </p>
 
-        console.log("REGISTER CLICKED");
+        </div>
 
-        registerMessageEl.textContent = "Processing...";
-        registerMessageEl.style.color = "black";
 
+        <!-- REGISTER -->
 
-        const name =
-            document.getElementById("name").value.trim();
+        <form id="registerForm" class="hidden">
 
-        const email =
-            document.getElementById("regEmail").value.trim();
+            <h2>Create Account</h2>
 
-        const password =
-            document.getElementById("regPassword").value;
+            <p class="subtitle">
+                Create your account to get started
+            </p>
 
+            <label for="name">Name</label>
 
-        try {
+            <input
+                type="text"
+                id="name"
+                placeholder="Enter your name"
+                required
+            >
 
-            const response = await fetch(
-                `${API_URL}/api/register`,
-                {
-                    method: "POST",
+            <label for="regEmail">Email</label>
 
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
+            <input
+                type="email"
+                id="regEmail"
+                placeholder="Enter your email"
+                required
+            >
 
-                    body: JSON.stringify({
-                        name: name,
-                        email: email,
-                        password: password
-                    })
-                }
-            );
+            <label for="regPassword">Password</label>
 
+            <input
+                type="password"
+                id="regPassword"
+                placeholder="Create a password"
+                required
+            >
 
-            const data = await response.json();
+            <button type="submit">
+                Register
+            </button>
 
-            console.log("REGISTER RESPONSE:", data);
+            <p id="registerMessage"></p>
 
+        </form>
 
-            if (response.ok) {
+    </main>
 
-                registerMessageEl.style.color = "green";
 
-                registerMessageEl.textContent =
-                    "Registration successful! You can now log in.";
+    <script src="./app.js"></script>
 
+</body>
 
-                setTimeout(function () {
-
-                    registerForm.classList.add("hidden");
-
-                    document
-                        .getElementById("loginSection")
-                        .classList.remove("hidden");
-
-                    registerForm.reset();
-
-                }, 1500);
-
-
-            } else {
-
-                registerMessageEl.style.color = "red";
-
-                registerMessageEl.textContent =
-                    data.message || "Registration failed.";
-
-            }
-
-        } catch (error) {
-
-            console.error("REGISTER ERROR:", error);
-
-            registerMessageEl.style.color = "red";
-
-            registerMessageEl.textContent =
-                "Unable to connect to the server.";
-
-        }
-
-    });
-
-}
-
-
-// ========================================
-// LOGIN
-// ========================================
-
-if (loginForm) {
-
-    loginForm.addEventListener("submit", async function (e) {
-
-        e.preventDefault();
-
-        console.log("LOGIN BUTTON CLICKED");
-
-
-        messageEl.textContent = "Processing...";
-        messageEl.style.color = "black";
-
-
-        const email =
-            document.getElementById("email").value.trim();
-
-        const password =
-            document.getElementById("password").value;
-
-
-        try {
-
-            console.log("SENDING LOGIN REQUEST");
-
-
-            const response = await fetch(
-                `${API_URL}/api/login`,
-                {
-                    method: "POST",
-
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-
-                    body: JSON.stringify({
-                        email: email,
-                        password: password
-                    })
-                }
-            );
-
-
-            const data = await response.json();
-
-
-            console.log(
-                "LOGIN STATUS:",
-                response.status
-            );
-
-            console.log(
-                "LOGIN RESPONSE:",
-                data
-            );
-
-
-            // ========================================
-            // LOGIN SUCCESS
-            // ========================================
-
-            if (response.ok && data.token) {
-
-                console.log("LOGIN SUCCESSFUL");
-
-                // Save token
-                localStorage.setItem(
-                    "token",
-                    data.token
-                );
-
-
-                messageEl.style.color = "green";
-
-                messageEl.textContent =
-                    "Login successful!";
-
-
-                // ========================================
-                // GO DIRECTLY TO YOUR LANDING PAGE
-                // ========================================
-
-                setTimeout(function () {
-
-                    console.log(
-                        "REDIRECTING TO DASHBOARD"
-                    );
-
-                    window.location.href =
-                        "./dashboard.html";
-
-                }, 500);
-
-
-            } else {
-
-                messageEl.style.color = "red";
-
-                messageEl.textContent =
-                    data.message || "Login failed.";
-
-            }
-
-
-        } catch (error) {
-
-            console.error(
-                "LOGIN ERROR:",
-                error
-            );
-
-            messageEl.style.color = "red";
-
-            messageEl.textContent =
-                "Unable to connect to the server.";
-
-        }
-
-    });
-
-}
+</html>
