@@ -10,7 +10,8 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>My Website</title>
+    <title>Sheila Mae & Gladys Yesha</title>
+
 
     <style>
 
@@ -23,60 +24,44 @@
 
         body {
 
-            min-height: 100vh;
+            background: #f4f4f4;
 
             font-family:
                 "Times New Roman",
                 Times,
                 serif;
 
-            background: #f8c8dc;
-
-            display: flex;
-
-            justify-content: center;
-
-            align-items: center;
-
-            padding: 30px;
+            color: #3d2119;
 
         }
 
+
+        /* =====================================
+           WEBSITE CONTAINER
+        ===================================== */
 
         .website {
 
             width: 100%;
 
-            max-width: 1100px;
+            max-width: 1200px;
 
-            min-height: 650px;
+            margin: 0 auto;
 
-            background: #fff7fa;
-
-            border: 2px solid #ed9fbd;
-
-            border-radius: 20px;
-
-            overflow: hidden;
-
-            box-shadow:
-                0 15px 40px
-                rgba(120, 50, 80, 0.20);
+            background: white;
 
         }
 
 
-        /* =================================
-           HEADER
-        ================================= */
+        /* =====================================
+           TOP BAR
+        ===================================== */
 
-        header {
+        .top-bar {
 
-            background: #71334d;
+            background: #432017;
 
-            color: white;
-
-            padding: 25px 45px;
+            padding: 18px 40px;
 
             display: flex;
 
@@ -87,9 +72,13 @@
         }
 
 
-        header h1 {
+        .logo {
 
-            font-size: 32px;
+            color: white;
+
+            font-size: 28px;
+
+            font-weight: bold;
 
         }
 
@@ -102,9 +91,9 @@
 
             color: white;
 
-            padding: 10px 20px;
+            padding: 11px 25px;
 
-            border-radius: 8px;
+            border-radius: 7px;
 
             font-family:
                 "Times New Roman",
@@ -127,112 +116,470 @@
         }
 
 
-        /* =================================
-           MAIN
-        ================================= */
+        /* =====================================
+           1. SHEILA SECTION
+        ===================================== */
 
-        .content {
+        .sheila-section {
 
-            padding: 70px 60px;
+            background: #f5b9d8;
 
-            text-align: center;
-
-        }
-
-
-        .content h2 {
-
-            color: #71334d;
-
-            font-size: 48px;
-
-            margin-bottom: 15px;
+            padding: 55px 55px 35px;
 
         }
 
 
-        .content p {
+        .sheila-intro {
 
-            color: #7d5265;
+            display: grid;
 
-            font-size: 20px;
+            grid-template-columns: 1fr 1.2fr;
 
-            line-height: 1.6;
+            gap: 40px;
 
-            max-width: 700px;
-
-            margin: 0 auto 30px;
+            align-items: center;
 
         }
 
 
-        .welcome-box {
+        .sheila-title {
 
-            background: #fce1eb;
+            font-size: 58px;
 
-            border: 1px solid #ed9fbd;
+            line-height: 0.92;
 
-            border-radius: 15px;
+            font-weight: 900;
 
-            padding: 30px;
-
-            max-width: 650px;
-
-            margin: 0 auto;
+            text-transform: uppercase;
 
         }
 
 
-        .welcome-box h3 {
-
-            color: #71334d;
+        .sheila-info {
 
             font-size: 28px;
 
-            margin-bottom: 10px;
+            line-height: 1.4;
 
         }
 
 
-        #welcome {
+        .sheila-info p {
 
-            color: #7d5265;
+            margin-top: 15px;
 
             font-size: 18px;
 
         }
 
 
-        /* =================================
+        /* SHEILA IMAGE */
+
+        .sheila-photo {
+
+            width: 100%;
+
+            height: 300px;
+
+            object-fit: cover;
+
+            display: block;
+
+            margin-top: 35px;
+
+        }
+
+
+        /* =====================================
+           2. GLADYS SECTION
+        ===================================== */
+
+        .gladys-section {
+
+            display: grid;
+
+            grid-template-columns: 36% 64%;
+
+            min-height: 500px;
+
+        }
+
+
+        .gladys-left {
+
+            background: #432017;
+
+            color: white;
+
+            padding: 45px 35px;
+
+            text-align: center;
+
+        }
+
+
+        /* GLADYS IMAGE */
+
+        .gladys-photo {
+
+            width: 100%;
+
+            max-width: 330px;
+
+            height: 220px;
+
+            object-fit: cover;
+
+            display: block;
+
+            margin: 0 auto 25px;
+
+        }
+
+
+        .quote {
+
+            font-size: 38px;
+
+            font-weight: bold;
+
+            line-height: 1.15;
+
+        }
+
+
+        .quote-small {
+
+            margin-top: 15px;
+
+            font-size: 13px;
+
+        }
+
+
+        .gladys-right {
+
+            background: #f8f7e9;
+
+            padding: 65px 55px;
+
+        }
+
+
+        .gladys-title {
+
+            font-size: 50px;
+
+            line-height: 1.05;
+
+            font-weight: 900;
+
+            text-transform: uppercase;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .gladys-subtitle {
+
+            font-size: 26px;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .gladys-description {
+
+            font-size: 18px;
+
+            line-height: 1.6;
+
+            max-width: 600px;
+
+        }
+
+
+        /* =====================================
+           3. WHAT'S IN THIS WEBSITE
+        ===================================== */
+
+        .us-section {
+
+            background: #c5d83d;
+
+            padding: 60px 55px;
+
+            display: grid;
+
+            grid-template-columns: 40% 60%;
+
+            gap: 35px;
+
+            align-items: center;
+
+        }
+
+
+        .us-title {
+
+            font-size: 58px;
+
+            line-height: 0.98;
+
+            font-weight: 900;
+
+            text-transform: uppercase;
+
+        }
+
+
+        /* THIRD IMAGE */
+
+        .us-photo {
+
+            width: 100%;
+
+            height: 360px;
+
+            object-fit: cover;
+
+            display: block;
+
+        }
+
+
+        /* =====================================
+           NEXT SECTION
+        ===================================== */
+
+        .proud-section {
+
+            background: #f5b9d8;
+
+            padding: 75px 50px;
+
+            text-align: center;
+
+        }
+
+
+        .proud-section h2 {
+
+            font-size: 52px;
+
+            font-weight: 900;
+
+            text-transform: uppercase;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .proud-section p {
+
+            max-width: 750px;
+
+            margin: auto;
+
+            font-size: 19px;
+
+            line-height: 1.6;
+
+        }
+
+
+        /* =====================================
+           FOOTER
+        ===================================== */
+
+        footer {
+
+            background: #432017;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 30px;
+
+            font-size: 16px;
+
+        }
+
+
+        /* =====================================
+           TABLET
+        ===================================== */
+
+        @media (max-width: 800px) {
+
+            .sheila-section {
+
+                padding: 45px 30px 30px;
+
+            }
+
+
+            .sheila-intro {
+
+                grid-template-columns: 1fr;
+
+                gap: 25px;
+
+            }
+
+
+            .sheila-title {
+
+                font-size: 48px;
+
+            }
+
+
+            .sheila-info {
+
+                font-size: 24px;
+
+            }
+
+
+            .gladys-section {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .gladys-left {
+
+                padding: 40px 25px;
+
+            }
+
+
+            .gladys-right {
+
+                padding: 45px 30px;
+
+            }
+
+
+            .gladys-title {
+
+                font-size: 40px;
+
+            }
+
+
+            .us-section {
+
+                grid-template-columns: 1fr;
+
+                padding: 50px 30px;
+
+            }
+
+
+            .us-title {
+
+                font-size: 48px;
+
+            }
+
+
+            .us-photo {
+
+                height: 300px;
+
+            }
+
+        }
+
+
+        /* =====================================
            MOBILE
-        ================================= */
+        ===================================== */
 
-        @media (max-width: 600px) {
+        @media (max-width: 500px) {
 
-            header {
+            .top-bar {
 
-                padding: 20px;
-
-            }
-
-
-            header h1 {
-
-                font-size: 25px;
+                padding: 15px 20px;
 
             }
 
 
-            .content {
+            .logo {
 
-                padding: 50px 25px;
+                font-size: 21px;
 
             }
 
 
-            .content h2 {
+            #logout {
 
-                font-size: 36px;
+                padding: 9px 15px;
+
+                font-size: 14px;
+
+            }
+
+
+            .sheila-title {
+
+                font-size: 40px;
+
+            }
+
+
+            .sheila-info {
+
+                font-size: 21px;
+
+            }
+
+
+            .sheila-photo {
+
+                height: 210px;
+
+            }
+
+
+            .gladys-title {
+
+                font-size: 34px;
+
+            }
+
+
+            .gladys-subtitle {
+
+                font-size: 21px;
+
+            }
+
+
+            .us-title {
+
+                font-size: 40px;
+
+            }
+
+
+            .us-photo {
+
+                height: 240px;
+
+            }
+
+
+            .proud-section h2 {
+
+                font-size: 38px;
 
             }
 
@@ -246,166 +593,327 @@
 <body>
 
 
-    <div class="website">
+<div class="website">
 
 
-        <!-- HEADER -->
+    <!-- =================================
+         TOP BAR
+    ================================== -->
 
-        <header>
+    <div class="top-bar">
 
-            <h1>
-                Our Website
-            </h1>
-
-            <button id="logout">
-                Logout
-            </button>
-
-        </header>
+        <div class="logo">
+            Our Website
+        </div>
 
 
-        <!-- CONTENT -->
-
-        <main class="content">
-
-            <h2>
-                Welcome to Our Website!
-            </h2>
-
-            <p>
-                This is our personal website where
-                you can learn more about us, our life
-                as IT students, and our experiences.
-            </p>
-
-
-            <div class="welcome-box">
-
-                <h3>
-                    Welcome!
-                </h3>
-
-                <p id="welcome">
-                    Loading your account...
-                </p>
-
-            </div>
-
-        </main>
-
+        <button id="logout">
+            Logout
+        </button>
 
     </div>
 
 
-    <script>
 
-        const API_URL =
-            "https://login-system-db.onrender.com";
+    <!-- =================================
+         1. SHEILA
+    ================================== -->
 
-
-        const token =
-            localStorage.getItem("token");
+    <section class="sheila-section">
 
 
-        // =================================
-        // CHECK LOGIN
-        // =================================
+        <div class="sheila-intro">
 
-        if (!token) {
 
-            window.location.href =
-                "./index.html";
+            <h1 class="sheila-title">
+
+                HI,<br>
+                I'M SHEILA<br>
+                MAE SALES.
+
+            </h1>
+
+
+            <div class="sheila-info">
+
+                A Student from
+                <sup>3rd</sup> Year BSIT.
+
+
+                <p>
+
+                    I am 21 years old,
+                    from Meycauayan Bulacan.
+
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- IMAGE 1: SHEILA -->
+
+        <img
+            src="images/sheila.jpg"
+            class="sheila-photo"
+            alt="Sheila Mae Sales"
+        >
+
+
+    </section>
+
+
+
+    <!-- =================================
+         2. GLADYS
+    ================================== -->
+
+    <section class="gladys-section">
+
+
+        <div class="gladys-left">
+
+
+            <!-- IMAGE 2: GLADYS -->
+
+            <img
+                src="images/gladys.jpg"
+                class="gladys-photo"
+                alt="Gladys Yesha Rosales"
+            >
+
+
+            <div class="quote">
+
+                “It is<br>
+                what it is”
+
+            </div>
+
+
+            <div class="quote-small">
+
+                gamit na gamit namin sya
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="gladys-right">
+
+
+            <h2 class="gladys-title">
+
+                HI, I'M GLADYS
+                YESHA ROSALES
+
+            </h2>
+
+
+            <div class="gladys-subtitle">
+
+                A Student from
+                <sup>3rd</sup> Year BSIT.
+
+            </div>
+
+
+            <p class="gladys-description">
+
+                I am from Meycauayan Bulacan,
+                I love Cats and Dogs and I hate
+                coding hahahaha di po yun joke.
+
+            </p>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =================================
+         3. US / WHAT'S IN THIS WEBSITE
+    ================================== -->
+
+    <section class="us-section">
+
+
+        <h2 class="us-title">
+
+            WHAT'S IN<br>
+            THIS<br>
+            WEBSITE??
+
+        </h2>
+
+
+        <!-- IMAGE 3: US -->
+
+        <img
+            src="images/us.jpg"
+            class="us-photo"
+            alt="What's in this website"
+        >
+
+
+    </section>
+
+
+
+    <!-- =================================
+         PROUD OF SECTION
+    ================================== -->
+
+    <section class="proud-section">
+
+
+        <h2>
+
+            WINS I'M PROUD OF
+
+        </h2>
+
+
+        <p>
+
+            Every small achievement counts.
+            This section is where we can share
+            our accomplishments, experiences,
+            and moments that we are proud of.
+
+        </p>
+
+
+    </section>
+
+
+
+    <!-- =================================
+         FOOTER
+    ================================== -->
+
+    <footer>
+
+        Sheila Mae Sales & Gladys Yesha Rosales
+
+    </footer>
+
+
+</div>
+
+
+
+<script>
+
+    const API_URL =
+        "https://login-system-db.onrender.com";
+
+
+    const token =
+        localStorage.getItem("token");
+
+
+    /* =================================
+       CHECK LOGIN
+    ================================= */
+
+    if (!token) {
+
+        window.location.href =
+            "./index.html";
+
+    }
+
+
+    /* =================================
+       VERIFY USER
+    ================================= */
+
+    fetch(`${API_URL}/api/profile`, {
+
+        method: "GET",
+
+        headers: {
+
+            "Authorization":
+                `Bearer ${token}`
 
         }
 
+    })
 
-        // =================================
-        // GET USER PROFILE
-        // =================================
+    .then(function(response) {
 
-        fetch(`${API_URL}/api/profile`, {
+        if (!response.ok) {
 
-            method: "GET",
+            throw new Error(
+                "Unauthorized"
+            );
 
-            headers: {
+        }
 
-                "Authorization":
-                    `Bearer ${token}`
+        return response.json();
 
-            }
+    })
 
-        })
+    .then(function(data) {
 
-        .then(function (response) {
+        console.log(
+            "Logged in user:",
+            data
+        );
 
-            if (!response.ok) {
+    })
 
-                throw new Error(
-                    "Unauthorized"
+    .catch(function(error) {
+
+        console.error(
+            "Profile error:",
+            error
+        );
+
+
+        localStorage.removeItem(
+            "token"
+        );
+
+
+        window.location.href =
+            "./index.html";
+
+    });
+
+
+    /* =================================
+       LOGOUT
+    ================================= */
+
+    document
+        .getElementById("logout")
+        .addEventListener(
+            "click",
+            function() {
+
+                localStorage.removeItem(
+                    "token"
                 );
 
+
+                window.location.href =
+                    "./index.html";
+
             }
+        );
 
-            return response.json();
-
-        })
-
-        .then(function (data) {
-
-            console.log(
-                "PROFILE:",
-                data
-            );
-
-
-            document.getElementById(
-                "welcome"
-            ).textContent =
-
-                `Welcome, ${data.user.name}!`;
-
-        })
-
-        .catch(function (error) {
-
-            console.error(
-                "PROFILE ERROR:",
-                error
-            );
-
-
-            localStorage.removeItem(
-                "token"
-            );
-
-
-            window.location.href =
-                "./index.html";
-
-        });
-
-
-        // =================================
-        // LOGOUT
-        // =================================
-
-        document
-            .getElementById("logout")
-            .addEventListener(
-                "click",
-                function () {
-
-                    localStorage.removeItem(
-                        "token"
-                    );
-
-                    window.location.href =
-                        "./index.html";
-
-                }
-            );
-
-    </script>
+</script>
 
 
 </body>
