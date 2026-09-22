@@ -1,48 +1,413 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard</title>
-  <link rel="stylesheet" href="style.css">
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>My Website</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            min-height: 100vh;
+
+            font-family:
+                "Times New Roman",
+                Times,
+                serif;
+
+            background: #f8c8dc;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            padding: 30px;
+
+        }
+
+
+        .website {
+
+            width: 100%;
+
+            max-width: 1100px;
+
+            min-height: 650px;
+
+            background: #fff7fa;
+
+            border: 2px solid #ed9fbd;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 15px 40px
+                rgba(120, 50, 80, 0.20);
+
+        }
+
+
+        /* =================================
+           HEADER
+        ================================= */
+
+        header {
+
+            background: #71334d;
+
+            color: white;
+
+            padding: 25px 45px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+        }
+
+
+        header h1 {
+
+            font-size: 32px;
+
+        }
+
+
+        #logout {
+
+            border: none;
+
+            background: #c95788;
+
+            color: white;
+
+            padding: 10px 20px;
+
+            border-radius: 8px;
+
+            font-family:
+                "Times New Roman",
+                Times,
+                serif;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+        }
+
+
+        #logout:hover {
+
+            background: #a9406d;
+
+        }
+
+
+        /* =================================
+           MAIN
+        ================================= */
+
+        .content {
+
+            padding: 70px 60px;
+
+            text-align: center;
+
+        }
+
+
+        .content h2 {
+
+            color: #71334d;
+
+            font-size: 48px;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .content p {
+
+            color: #7d5265;
+
+            font-size: 20px;
+
+            line-height: 1.6;
+
+            max-width: 700px;
+
+            margin: 0 auto 30px;
+
+        }
+
+
+        .welcome-box {
+
+            background: #fce1eb;
+
+            border: 1px solid #ed9fbd;
+
+            border-radius: 15px;
+
+            padding: 30px;
+
+            max-width: 650px;
+
+            margin: 0 auto;
+
+        }
+
+
+        .welcome-box h3 {
+
+            color: #71334d;
+
+            font-size: 28px;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        #welcome {
+
+            color: #7d5265;
+
+            font-size: 18px;
+
+        }
+
+
+        /* =================================
+           MOBILE
+        ================================= */
+
+        @media (max-width: 600px) {
+
+            header {
+
+                padding: 20px;
+
+            }
+
+
+            header h1 {
+
+                font-size: 25px;
+
+            }
+
+
+            .content {
+
+                padding: 50px 25px;
+
+            }
+
+
+            .content h2 {
+
+                font-size: 36px;
+
+            }
+
+        }
+
+    </style>
+
 </head>
+
+
 <body>
-  <main class="card">
-    <h1>Dashboard</h1>
-    <p id="welcome">Loading...</p>
-    <button id="logout">Logout</button>
-  </main>
 
-  <script>
-    const API_URL = "[https://login-system-db.onrender.com](https://login-system-db.onrender.com)";
-    const token = localStorage.getItem("token");
 
-    if (!token) {
-      window.location.href = "index.html";
-    }
+    <div class="website">
 
-    fetch(`${API_URL}/api/profile`, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    })
-    .then(response => {
-      if (!response.ok) throw new Error();
-      return response.json();
-    })
-    .then(data => {
-      document.getElementById("welcome").textContent =
-        `Welcome, ${data.user.name} (${data.user.email})`;
-    })
-    .catch(() => {
-      localStorage.removeItem("token");
-      window.location.href = "index.html";
-    });
 
-    document.getElementById("logout").addEventListener("click", () => {
-      localStorage.removeItem("token");
-      window.location.href = "index.html";
-    });
-  </script>
+        <!-- HEADER -->
+
+        <header>
+
+            <h1>
+                Our Website
+            </h1>
+
+            <button id="logout">
+                Logout
+            </button>
+
+        </header>
+
+
+        <!-- CONTENT -->
+
+        <main class="content">
+
+            <h2>
+                Welcome to Our Website!
+            </h2>
+
+            <p>
+                This is our personal website where
+                you can learn more about us, our life
+                as IT students, and our experiences.
+            </p>
+
+
+            <div class="welcome-box">
+
+                <h3>
+                    Welcome!
+                </h3>
+
+                <p id="welcome">
+                    Loading your account...
+                </p>
+
+            </div>
+
+        </main>
+
+
+    </div>
+
+
+    <script>
+
+        const API_URL =
+            "https://login-system-db.onrender.com";
+
+
+        const token =
+            localStorage.getItem("token");
+
+
+        // =================================
+        // CHECK LOGIN
+        // =================================
+
+        if (!token) {
+
+            window.location.href =
+                "./index.html";
+
+        }
+
+
+        // =================================
+        // GET USER PROFILE
+        // =================================
+
+        fetch(`${API_URL}/api/profile`, {
+
+            method: "GET",
+
+            headers: {
+
+                "Authorization":
+                    `Bearer ${token}`
+
+            }
+
+        })
+
+        .then(function (response) {
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "Unauthorized"
+                );
+
+            }
+
+            return response.json();
+
+        })
+
+        .then(function (data) {
+
+            console.log(
+                "PROFILE:",
+                data
+            );
+
+
+            document.getElementById(
+                "welcome"
+            ).textContent =
+
+                `Welcome, ${data.user.name}!`;
+
+        })
+
+        .catch(function (error) {
+
+            console.error(
+                "PROFILE ERROR:",
+                error
+            );
+
+
+            localStorage.removeItem(
+                "token"
+            );
+
+
+            window.location.href =
+                "./index.html";
+
+        });
+
+
+        // =================================
+        // LOGOUT
+        // =================================
+
+        document
+            .getElementById("logout")
+            .addEventListener(
+                "click",
+                function () {
+
+                    localStorage.removeItem(
+                        "token"
+                    );
+
+                    window.location.href =
+                        "./index.html";
+
+                }
+            );
+
+    </script>
+
+
 </body>
+
 </html>
