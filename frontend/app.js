@@ -1,261 +1,88 @@
-const express = require("express");
-
-const mongoose = require("mongoose");
-
-const bcrypt = require("bcryptjs");
-
-const jwt = require("jsonwebtoken");
-
-const cors = require("cors");
-
-require("dotenv").config();
-
- 
-
-const app = express();
-
- 
-
-app.use(cors());
-
-// app.use(
-
-//   cors({
-
-//     origin: process.env.FRONTEND_URL || "*",
-
-//   }),
-
-// );
-
-app.use(express.json());
-
- 
-
-const userSchema = new mongoose.Schema({
-
-  name: { type: String, required: true },
-
-  email: { type: String, required: true, unique: true, lowercase: true },
-
-  password: { type: String, required: true },
-
-});
-
- 
-
-const User = mongoose.model("User", userSchema);
-
- 
-
-app.get("/", (req, res) => {
-
-  res.json({ message: "Login API is running." });
-
-});
-
- 
-
-app.post("/api/register", async (req, res) => {
-
-  try {
-
-    const { name, email, password } = req.body;
-
- 
-
-    if (!name || !email || !password) {
-
-      return res.status(400).json({ message: "All fields are required." });
-
-    }
-
- 
-
-    if (password.length < 6) {
-
-      return res
-
-        .status(400)
-
-        .json({ message: "Password must be at least 6 characters." });
-
-    }
-
- 
-
-    const existingUser = await User.findOne({ email });
-
-    if (existingUser) {
-
-      return res.status(409).json({ message: "Email is already registered." });
-
-    }
-
- 
-
-    const hashedPassword = await bcrypt.hash(password, 10);
-
- 
-
-    await User.create({
-
-      name,
-
-      email,
-
-      password: hashedPassword,
-
-    });
-
- 
-
-    res.status(201).json({ message: "Registration successful." });
-
-  } catch (error) {
-
-    res.status(500).json({ message: "Server error." });
-
-  }
-
-});
-
- 
-
-app.post("/api/login", async (req, res) => {
-
-  try {
-
-    const { email, password } = req.body;
-
- 
-
-    const user = await User.findOne({ email });
-
-    if (!user) {
-
-      return res.status(401).json({ message: "Invalid email or password." });
-
-    }
-
- 
-
-    const validPassword = await bcrypt.compare(password, user.password);
-
-    if (!validPassword) {
-
-      return res.status(401).json({ message: "Invalid email or password." });
-
-    }
-
- 
-
-    const token = jwt.sign(
-
-      { userId: user._id, name: user.name, email: user.email },
-
-      process.env.JWT_SECRET,
-
-      { expiresIn: "1h" },
-
-    );
-
- 
-
-    res.json({
-
-      message: "Login successful.",
-
-      token,
-
-      user: {
-
-        name: user.name,
-
-        email: user.email,
-
-      },
-
-    });
-
-  } catch (error) {
-
-    res.status(500).json({ message: "Server error." });
-
-  }
-
-});
-
- 
-
-app.get("/api/profile", async (req, res) => {
-
-  try {
-
-    const authHeader = req.headers.authorization;
-
- 
-
-    if (!authHeader || !authHeader.startsWith("Bearer ")) {
-
-      return res.status(401).json({ message: "Unauthorized." });
-
-    }
-
- 
-
-    const token = authHeader.split(" ")[1];
-
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
- 
-
-    res.json({
-
-      message: "Protected data.",
-
-      user: {
-
-        name: decoded.name,
-
-        email: decoded.email,
-
-      },
-
-    });
-
-  } catch (error) {
-
-    res.status(401).json({ message: "Invalid or expired token." });
-
-  }
-
-});
-
- 
-
-const PORT = process.env.PORT || 5000;
-
- 
-
-mongoose
-
-  .connect(process.env.MONGODB_URI)
-
-  .then(() => {
-
-    console.log("MongoDB connected.");
-
-    app.listen(PORT, () => {
-
-      console.log(`Server running on port ${PORT}`);
-
-    });
-
-  })
-
-  .catch((error) => {
-
-    console.error("MongoDB connection failed:", error);
-
+const API_URL = "https://login-system-db.onrender.com";
+
+const loginForm = document.getElementById("loginForm");
+const registerForm = document.getElementById("registerForm");
+const showRegisterBtn = document.getElementById("showRegister");
+
+const messageEl = document.getElementById("message");
+const registerMessageEl = document.getElementById("registerMessage");
+
+// Switch to register form view
+if (showRegisterBtn) {
+  showRegisterBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    loginForm.classList.add("hidden");
+    registerForm.classList.remove("hidden");
   });
+}
+
+// Handle Registration
+if (registerForm) {
+  registerForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    registerMessageEl.textContent = "Processing...";
+    registerMessageEl.style.color = "black";
+
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("regEmail").value;
+    const password = document.getElementById("regPassword").value;
+
+    try {
+      const response = await fetch(`${API_URL}/api/register`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, password }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        registerMessageEl.style.color = "green";
+        registerMessageEl.textContent = "Registration successful! You can now log in.";
+        setTimeout(() => {
+          registerForm.classList.add("hidden");
+          loginForm.classList.remove("hidden");
+        }, 2000);
+      } else {
+        registerMessageEl.style.color = "red";
+        registerMessageEl.textContent = data.message || "Registration failed.";
+      }
+    } catch (error) {
+      registerMessageEl.style.color = "red";
+      registerMessageEl.textContent = "Unable to connect to the server.";
+    }
+  });
+}
+
+// Handle Login
+if (loginForm) {
+  loginForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    messageEl.textContent = "Processing...";
+    messageEl.style.color = "black";
+
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    try {
+      const response = await fetch(`${API_URL}/api/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        localStorage.setItem("token", data.token);
+        window.location.href = "dashboard.html";
+      } else {
+        messageEl.style.color = "red";
+        messageEl.textContent = data.message || "Login failed.";
+      }
+    } catch (error) {
+      messageEl.style.color = "red";
+      messageEl.textContent = "Unable to connect to the server.";
+    }
+  });
+}
